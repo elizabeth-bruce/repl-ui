@@ -8,10 +8,8 @@ const style = {
         fontSize: 14,
         paddingTop: 10,
         paddingBottom: 10,
-        width: '100%'
-    },
-    alias: {
-        color: '#45A203'
+        width: '100%',
+        minHeight: 0
     },
     result: {
         color: '#45A203'
@@ -21,45 +19,61 @@ const style = {
     }
 };
 
+const aliasStyle = (props) => ({ color: props.data.color });
+const renderCode = (code) => {
+    return code.split('\n').map((item, key) => <span key={key}>{item.replace(/\s/g, '\u00A0')}<br/></span>);
+};
 
 function TerminalEvent(props) {
     let eventPane;
 
+    const aStyle = aliasStyle(props);
+
     switch (props.type) {
         case 'executionSuccess':
-            eventPane = ([
-                <span style={style.alias}>{props.data.alias}</span>,
-                <span>{props.data.code}</span>,
-                <br/>,
-                <span style={style.result}>{props.data.result}</span>,
-            ]);
+            eventPane = (
+                <span>
+                    <span>
+                        <span style={aStyle}>{props.data.alias}</span>>{' '}
+                        <br/>
+                    </span>
+                    <span>{renderCode(props.data.code)}</span>
+                    <br/>
+                <span style={style.result}>{props.data.result}</span>
+                </span>
+            );
             break;
         case 'executionFailure':
-            eventPane = ([
-                <span style={style.alias}>{props.data.alias}</span>,
-                <span>{props.data.code}</span>,
-                <br/>,
-                <span style={style.failure}>{props.data.error}</span>
-            ]);
+            eventPane = (
+                <span>
+                    <span>
+                        <span style={aStyle}>{props.data.alias}</span>>{' '}
+                        <br/>
+                    </span>
+                    <span>{renderCode(props.data.code)}</span>
+                    <br/>
+                    <span style={style.failure}>{props.data.error}</span>
+                </span>
+            );
             break;
         case 'connectUser':
             eventPane = (
                 <span>
-                    <span style={style.alias}>{props.data.alias}</span> has joined the session.
+                    <span style={aStyle}>{props.data.alias}</span> has joined the session.
                 </span>
             );
             break;
         case 'registerAlias':
             eventPane = (
                 <span>
-                    <span style={style.alias}>{props.data.oldAlias}</span> is now known as <span style={style.alias}>{props.data.newAlias}</span>.
+                    <span style={aStyle}>{props.data.oldAlias}</span> is now known as <span style={aStyle}>{props.data.newAlias}</span>.
                 </span>
             );
             break;
         case 'disconnectUser':
             eventPane = (
                 <span>
-                    <span style={style.alias}>{props.data.alias}</span> has left the session.
+                    <span style={aStyle}>{props.data.alias}</span> has left the session.
                 </span>
             );
             break;

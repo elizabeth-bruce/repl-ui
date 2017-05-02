@@ -16,10 +16,14 @@ class TerminalInput extends Component {
             background: {
                 background: '#000000',
                 color: '#ffffff',
-                marginTop: 50,
+                borderLeft: '1px solid #ffffff',
                 padding: 10,
-                minHeight: 530,
+                height: '100%',
+                boxSizing: 'border-box',
                 overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%'
             },
             textarea: {
                 background: '#000000',
@@ -28,8 +32,10 @@ class TerminalInput extends Component {
                 fontSize: 14,
                 textAlign: 'left',
                 width: '100%',
+                height: '100%',
                 border: 'none',
-                resize: 'none'
+                resize: 'none',
+                flex: '1 1 auto'
             },
             button: {
                 border: '1px solid #ffffff',
@@ -39,6 +45,7 @@ class TerminalInput extends Component {
                 fontSize: 14,
                 paddingTop: 10,
                 paddingBottom: 10,
+                flex: '0 1 auto',
                 width: '100%',
             }
        };

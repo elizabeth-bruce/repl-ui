@@ -1,14 +1,20 @@
 import React from 'react';
 import {render} from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import ReplUI from './components/repl-ui';
 import ReplUIApp from './reducers/index';
 
 import handleInitialSetup from './lib/setup-websocket';
 
-let store = createStore(ReplUIApp);
+let store = createStore(
+    ReplUIApp,
+    applyMiddleware(
+        thunkMiddleware
+    )
+);
 
 handleInitialSetup(store);
 // Needed for onTouchTap

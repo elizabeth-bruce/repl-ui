@@ -14,7 +14,8 @@ class UserBar extends Component {
                 width: '100%',
                 minHeight: 60,
                 backgroundColor: '#8AD76E',
-                paddingTop: 10
+                paddingTop: 10,
+                flex: '0 1 auto'
             },
             userAvatarGroup: {
                 textAlign: 'center'
@@ -25,7 +26,6 @@ class UserBar extends Component {
             <div className="user-bar-background">
                 <Paper style={style.background} rounded={false} zDepth={2}>
                     <div className="user-avatar-group" style={style.userAvatarGroup}>
-                        <UserAvatar />
                     </div>
                 </Paper>
             </div>

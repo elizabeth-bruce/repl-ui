@@ -9,7 +9,7 @@ import {Row, Col} from 'react-flexbox-grid';
 import UserBar from './user-bar';
 import Terminal from './terminal';
 import TerminalInput from './terminal-input';
-import AliasForm from './alias-form';
+import LeftBar from './left-bar';
 
 import * as popsicle from 'popsicle';
 
@@ -24,6 +24,27 @@ const muiTheme = getMuiTheme({
   },
 });
 
+const divWrapperStyle = {
+    display: 'flex',
+    height: '100%',
+    flexDirection: 'column'
+};
+
+const divStyle = {
+    height: '100%',
+    flex: '1 1 auto',
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: 'hidden'
+};
+
+const rowStyle = {
+    height: '100%',
+    flex: '1 1 auto',
+    display: 'flex',
+    overflow: 'hidden'
+};
+
 class ReplUI extends Component {
     constructor(props, context) {
         super(props, context);
@@ -32,13 +53,18 @@ class ReplUI extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
-                <div>
+                <div style={divWrapperStyle}>
                     <UserBar activeUsers={this.props.activeUsers} />
-                    <div>
-                        <Row start="xs">
-                            <Col md={4} xs={12} mdOffset={1} start="xs">
+                    <div style={divStyle}>
+                        <Row start="xs" style={rowStyle}>
+                            <Col md={2} xs={12} start="xs">
+                                <LeftBar
+                                    activeUsers={this.props.activeUsers}
+                                    assignAlias={this.props.assignAlias}
+                                />
+                            </Col>
+                            <Col md={4} xs={12} start="xs">
                                 <TerminalInput sendCode={this.props.sendCode} />
-                                <AliasForm/>
                             </Col>
                             <Col md={6} xs={12} start="xs">
                                 <Terminal

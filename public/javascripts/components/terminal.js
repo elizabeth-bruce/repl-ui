@@ -2,16 +2,29 @@ import React, {Component} from 'react';
 import TerminalEvent from './terminal-event';
 import TerminalHeader from './terminal-header';
 
+const wrapperStyle = {
+    boxSizing: 'border-box',
+    height: '100%',
+    display: 'block',
+    flex: 'none',
+    flexDirection: 'column',
+    background: '#000000',
+    overflowY: 'hidden'
+};
+
 const style = {
     background: '#000000',
     color: '#ffffff',
-    marginTop: 50,
+    borderLeft: '1px solid #ffffff',
     padding: 10,
     fontFamily: 'Lucida Console,Lucida Sans Typewriter,monaco,Bitstream Vera Sans Mono,monospace',
     fontSize: 14,
     textAlign: 'left',
-    height: 600,
-    overflowY: 'auto'
+    overflowY: 'auto',
+    overflowX: 'hidden',
+    display: 'block',
+    height: '100%',
+    flex: '0 0 auto',
 };
 
 const color = {
@@ -28,9 +41,11 @@ function Terminal(props) {
     );
 
     return (
-        <div style={style}>
-            <TerminalHeader activeUsers={props.activeUsers} />
-            {events}
+        <div style={wrapperStyle}>
+            <div style={style}>
+                <TerminalHeader activeUsers={props.activeUsers} />
+                {events}
+            </div>
         </div>
     );
 };

@@ -1,15 +1,12 @@
 const activeUserColors = [
-    '#1A5F00',
-    '#2E830F',
-    '#61B741',
-    '#53A291',
-    '#318B77',
-    '#0B634F',
-    '#004838',
-    '#D1EF7B',
-    '#AACC49',
-    '#709110',
-    '#4F6AA0'
+    '#45A023',
+    '#1A7964',
+    '#BC6129',
+    '#B1263C',
+    '#972163',
+    '#3A5ED8',
+    '#9DC947',
+    '#D7A24D'
 ]
 
 export default activeUserColors;

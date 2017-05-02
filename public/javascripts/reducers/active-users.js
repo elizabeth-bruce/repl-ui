@@ -30,6 +30,20 @@ const activeUsersFn = function(state = initialState, action) {
 
             return { activeUsers, availableColors, defaultColor };
 
+        case 'registerAlias':
+           userId = action.data.userId;
+           let renamedUser = _(state.activeUsers).find({ userId });
+
+           if (!renamedUser) {
+               return state;
+           }
+
+           renamedUser = Object.assign({}, renamedUser, { alias: action.data.newAlias });
+           activeUsers = _(state.activeUsers).reject((user) => (user.userId === action.data.userId))
+                                             .concat(renamedUser).value();
+
+           return Object.assign({}, state, { activeUsers });
+
         case 'disconnectUser':
             let userId = action.data.userId,
                 removedUser = _(state.activeUsers).find({ userId }),
