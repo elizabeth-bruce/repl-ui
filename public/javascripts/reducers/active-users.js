@@ -16,12 +16,12 @@ const activeUsersFn = function(state = initialState, action) {
             defaultColor = availableColors[0];
 
             activeUsers = action.data.map((user) => 
-                Object.assign({}, user, { color: availableColors.pop() || fallbackColor }));
+                Object.assign({}, user, { color: availableColors.pop() || defaultColor }));
 
             return { activeUsers, availableColors, defaultColor };
 
         case 'connectUser':
-            [color=state.fallbackColor, ...availableColors] = state.availableColors;
+            [color=state.defaultColor, ...availableColors] = state.availableColors;
 
             let user = Object.assign({}, action.data, { color });
             
